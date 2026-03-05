@@ -1,5 +1,17 @@
 /*
-Copyright © 2026 kotob-project
+Copyright © 2026 kotob-project contributors
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 */
 package cmd
 
@@ -20,7 +32,7 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "kotob [text]",
+	Use:   "kotob [flags] [text]",
 	Short: "A lightweight CLI translation tool powered by Gemini API",
 	Long: `Kotob is a lightweight CLI translation tool built with Go,
 leveraging the Google Gemini API for fast and accurate translations.`,
