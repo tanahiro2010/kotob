@@ -80,9 +80,6 @@ Strictly follow these rules:
 	if systemPrompt != "" {
 		baseSystemInstruction = fmt.Sprintf("%s\n\n%s", baseSystemInstruction, systemPrompt)
 	}
-	if to == "" {
-		to = "Japanese (if input is English) or English (if input is Japanese)"
-	}
 
 	userPrompt := fmt.Sprintf("From: %s\nTo: %s\nText to translate:\n\"\"\"\n%s\n\"\"\"", from, to, escapedText)
 

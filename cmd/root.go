@@ -17,6 +17,7 @@ package cmd
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
@@ -36,6 +37,14 @@ var (
 	asJson   bool
 	noStream bool
 )
+
+type TranslationResponse struct {
+	Source     string `json:"source"`
+	Target     string `json:"target"`
+	Input      string `json:"input"`
+	Translated string `json:"translated"`
+	Model      string `json:"model"`
+}
 
 var rootCmd = &cobra.Command{
 	Use:   "kotob [flags] [text]",
@@ -66,12 +75,31 @@ leveraging the Google Gemini API for fast and accurate translations.`,
 
 		//翻訳開始
 
-		if !noStream {
-			err = client.TranslateStream(ctx, os.Stdout, args[0], fromLang, toLang, system)
-		} else {
+		if asJson || noStream {
 			result, err := client.Translate(ctx, args[0], fromLang, toLang, system)
-			if err == nil {
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+				os.Exit(1)
+			}
+			if asJson {
+				resp := TranslationResponse{
+					Source:     fromLang,
+					Target:     toLang,
+					Input:      args[0],
+					Translated: result,
+					Model:      model,
+				}
+				encoder := json.NewEncoder(os.Stdout)
+				encoder.SetIndent("", "  ")
+				encoder.Encode(resp)
+			} else {
 				fmt.Print(result)
+			}
+		} else {
+			err = client.TranslateStream(ctx, os.Stdout, args[0], fromLang, toLang, system)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+				os.Exit(1)
 			}
 		}
 
@@ -125,7 +153,12 @@ func initConfig() {
 		}
 	}
 	if toLang == "" {
-		toLang = viper.GetString("to")
+		vtoLang := viper.GetString("to")
+		if vtoLang != "" {
+			toLang = vtoLang
+		} else {
+			toLang = "Japanese"
+		}
 	}
 	if fromLang == "" || fromLang == "auto" {
 		vfromLang := viper.GetString("from")
