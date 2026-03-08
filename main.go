@@ -16,7 +16,7 @@ limitations under the License.
 
 package main
 
-import "kotob/cmd"
+import "github.com/kotob-project/kotob/cmd"
 
 func main() {
 	cmd.Execute()

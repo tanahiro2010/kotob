@@ -25,7 +25,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"kotob/pkg/translate"
+	"github.com/kotob-project/kotob/pkg/translate"
 )
 
 var (

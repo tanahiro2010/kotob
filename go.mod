@@ -1,4 +1,4 @@
-module kotob
+module github.com/kotob-project/kotob
 
 go 1.25.0
 
