@@ -199,3 +199,12 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+---
+### Third-Party Licenses
+
+This project utilizes the following open-source software:
+
+- spf13/cobra (Apache License 2.0)
+- spf13/viper (MIT License)
+- google.golang.org/genai (Apache License 2.0)
