@@ -16,13 +16,31 @@ CLI translation tool that converts to any language and format through GeminiAPI.
 go install github.com/kotob-project/kotob@latest
 ```
 kotob コマンドが認識されない場合は、以下のディレクトリを環境変数 PATH に追加する必要があります。  
-If the kotob command is not recognized, you need to add the following directory to your environment variable PATH.
 
 ・Windows: `%USERPROFILE%\go\bin`  
 ・macOS / Linux: `~/go/bin`
 
 ## バイナリをダウンロードする場合 (Direct Download)
-・準備中です。もうしばらくお待ちください。
+[Releases](https://github.com/kotob-project/kotob/releases) ページから、ご自身の環境に合った最新の実行ファイルをダウンロードしてください。
+
+1. 実行ファイルの配置:
+ダウンロードしたバイナリ（Windowsの場合は `.exe`）を任意の場所に配置してください。
+例：  
+・Windows:`%USERPROFILE%\kotob\`  
+・macOS / Linux: `~\kotob\`
+
+環境変数 PATH に追加されたディレクトリである必要があります。  
+PATHの通し方が分からない場合は各自で調べるようお願いします。
+
+2. リネーム
+ファイル名を kotob（Windowsなら kotob.exe）にリネームしてください。
+
+3. 実行権限の付与 (macOS / Linux):
+ダウンロードしたファイルに実行権限がない場合は、以下のコマンドを実行してください。
+```bash
+chmod +x "kotob"
+```
+
 
 # 準備 - Preparation
 kotob を使用するには、Gemini APIキーが必要です。 Google AI Studio でキーを取得し、環境変数 `KOTOB_API_KEY` に設定してください。  
@@ -90,7 +108,6 @@ kotob -t ja --json "Hello! How are you?"
 # フラグ - Flags
 
 kotobの動作を制御するためのフラグです。  
-Flags to control the behavior of kotob.
 
 | 短縮 | フルパス | 説明 | デフォルト値 |
 | :--- | :--- | :--- | :--- |
